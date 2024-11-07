@@ -26,7 +26,7 @@
   </style>
 </head>
 <body>
-  <label id="intervalLabel">Интервал обновления: 3 сек</label>
+  <label id="intervalLabel">3 сек</label>
   <input type="range" id="intervalSlider" min="1" max="5" value="3">
 
   <div id="randomText">Загрузка...</div>
@@ -55,7 +55,7 @@
 
     document.getElementById("intervalSlider").addEventListener("input", function() {
       const intervalLabel = document.getElementById("intervalLabel");
-      intervalLabel.textContent = `Интервал обновления: ${this.value} сек`; // Обновляем метку
+      intervalLabel.textContent = `${this.value} сек`; // Обновляем метку
       startInterval();
     });
 
