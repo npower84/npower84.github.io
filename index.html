@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Случайный текст с интервалом</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      font-size: 4em; /* Увеличен шрифт */
+      text-align: center;
+    }
+    #intervalSlider {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    #intervalLabel {
+      font-size: 0.5em;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <label id="intervalLabel">Интервал обновления: 3 сек</label>
+  <input type="range" id="intervalSlider" min="1" max="5" value="3">
+
+  <div id="randomText">Загрузка...</div>
+
+  <script>
+    let intervalId;
+
+    function getRandomText() {
+      const randomNumber = Math.floor(Math.random() * 6) + 1;
+      const letters = ["A", "B", "C", "D", "E", "F", "G"];
+      const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+      return `${randomNumber}${randomLetter}`;
+    }
+
+    function updateText() {
+      document.getElementById("randomText").innerText = getRandomText();
+    }
+
+    function startInterval() {
+      const intervalSlider = document.getElementById("intervalSlider");
+      const interval = parseInt(intervalSlider.value) * 1000;
+
+      clearInterval(intervalId); // Сбрасываем предыдущий интервал
+      intervalId = setInterval(updateText, interval); // Устанавливаем новый интервал
+    }
+
+    document.getElementById("intervalSlider").addEventListener("input", function() {
+      const intervalLabel = document.getElementById("intervalLabel");
+      intervalLabel.textContent = `Интервал обновления: ${this.value} сек`; // Обновляем метку
+      startInterval();
+    });
+
+    // Запускаем обновление сразу и с интервалом по умолчанию
+    updateText();
+    startInterval();
+  </script>
+</body>
+</html>
