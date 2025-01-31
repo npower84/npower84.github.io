@@ -32,8 +32,8 @@
   </style>
 </head>
 <body>
-  <label id="intervalLabel">3 сек</label>
-  <input type="range" id="intervalSlider" min="1" max="5" value="3">
+  <label id="intervalLabel">5 сек</label>
+  <input type="range" id="intervalSlider" min="3" max="10" value="5">
 
   <div id="randomText">Загрузка...</div>
 
@@ -41,8 +41,9 @@
     let intervalId;
 
     function getRandomText() {
-      const numbers = ["2","3","4","5"];
-      const letters = ["A", "B", "C", "D", "E", "F", "G"];
+      const numbers = ["A", "B", "C", "D", "E", "F", "G"];
+      const letters = ["(C)","(A)","(G)","(E)","(D)"];
+
 
 
       const randomNumber = numbers[Math.floor(Math.random() * numbers.length)]
