@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guitar Skill</title>
   <style>
-    /* Основные стили для темной темы */
     body {
       display: flex;
       flex-direction: column;
@@ -13,41 +12,23 @@
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
-      font-size: 4em; /* Увеличен шрифт */
+      font-size: 4em;
       text-align: center;
-      background-color: #121212; /* Темный фон */
-      color: #ffffff; /* Светлый текст */
+      background-color: #121212;
+      color: #ffffff;
       margin: 0;
-    }
-    #intervalSlider {
-      width: 200px;
-      margin-bottom: 20px;
-      accent-color: #ffffff; /* Цвет ползунка в светлом тоне */
-    }
-    #intervalLabel {
-      font-size: 0.5em;
-      margin-bottom: 10px;
-      color: #b3b3b3; /* Серый цвет для метки */
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <label id="intervalLabel">5 сек</label>
-  <input type="range" id="intervalSlider" min="3" max="10" value="5">
-
-  <div id="randomText">Загрузка...</div>
+  <div id="randomText">Нажмите для смены</div>
 
   <script>
-    let intervalId;
-
     function getRandomText() {
-      const numbers = ["Db", "Eb","F#","Gb","G#","Ab"];
-      const letters = ["(C form)","(A form)","(G form)","(E form)","(D form)"];
-      const aaa = ["A", "B", "C", "D", "E", "F", "G"];
-      const bbb = ["C#","D#"];
-
-
-      const randomNumber = numbers[Math.floor(Math.random() * numbers.length)]
+      const numbers = ["Db", "Eb", "F#", "Gb", "G#", "Ab"];
+      const letters = ["(C form)", "(A form)", "(G form)", "(E form)", "(D form)"];
+      const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
       const randomLetter = letters[Math.floor(Math.random() * letters.length)];
       return `${randomNumber} ${randomLetter}`;
     }
@@ -56,23 +37,10 @@
       document.getElementById("randomText").innerText = getRandomText();
     }
 
-    function startInterval() {
-      const intervalSlider = document.getElementById("intervalSlider");
-      const interval = parseInt(intervalSlider.value) * 1000;
+    document.getElementById("randomText").addEventListener("click", updateText);
 
-      clearInterval(intervalId); // Сбрасываем предыдущий интервал
-      intervalId = setInterval(updateText, interval); // Устанавливаем новый интервал
-    }
-
-    document.getElementById("intervalSlider").addEventListener("input", function() {
-      const intervalLabel = document.getElementById("intervalLabel");
-      intervalLabel.textContent = `${this.value} сек`; // Обновляем метку
-      startInterval();
-    });
-
-    // Запускаем обновление сразу и с интервалом по умолчанию
+    // Первоначальное обновление текста
     updateText();
-    startInterval();
   </script>
 </body>
 </html>
