@@ -26,8 +26,10 @@
 
   <script>
     function getRandomText() {
-      const numbers = ["Db", "Eb", "F#", "Gb", "G#", "Ab"];
+      const numbers = ["Db", "Eb",  "G#", "Ab", "A#", "Bb", "B#", "Cb"];
       const letters = ["(C form)", "(A form)", "(G form)", "(E form)", "(D form)"];
+      const aaa = ["A", "B", "C", "D", "E", "F", "G", "C#","D#", "F#", "Gb"];
+
       const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
       const randomLetter = letters[Math.floor(Math.random() * letters.length)];
       return `${randomNumber} ${randomLetter}`;
